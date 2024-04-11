@@ -1,4 +1,4 @@
-const PORT = 4000;
+const PORT = process.env.PORT || 4000;
 
 const express = require("express");
 const app = express();
@@ -20,9 +20,6 @@ const io = new Server(server, {
 io.on("connection", socket => {
 	console.log(`User connected: ${socket.id}`);
 
-	socket.on("disconnect", () => {
-		console.log(`User disconnected: ${socket.id}`);
-	});
 	socket.on("sendMessage", data => {
 		socket.broadcast.emit("receiveMessage", data);
 	});
