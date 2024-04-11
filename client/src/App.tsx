@@ -11,13 +11,13 @@ export default function App() {
 	const [messageReceived, setMessageRecieved] = useState("");
 
 	useEffect(() => {
-		socket.on("receiveMessage", (data) => {
+		socket.on("receiveMessage", (data: any) => {
 			setMessageRecieved(data.message);
 		})
 	}, [socket]);
 	return (
 		<>
-			<input type="text" onChange={e => { setMessage(e.target.value); }} />
+			<input type="text" onChange={ (e: any) => { setMessage(e.target.value); } } />
 			<button onClick={sendMessage}> Send Message </button>
 			<p>{messageReceived}</p>
 		</>
