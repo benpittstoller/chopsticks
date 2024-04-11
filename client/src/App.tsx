@@ -1,18 +1,25 @@
+import { useEffect, useState } from "react";
 import "./App.css";
 import { socket } from "./socket";
 
-socket.on("connect", () => {
-  console.log(socket.id);
-});
-socket.on("welcome", (message) => {
-  console.log(message);
-})
-
 export default function App() {
+	function sendMessage() {
+		socket.emit("sendMessage", { message });
+	}
 
-  return (
-    <>
-      <p>yo girl</p>
-    </>
-  )
+	const [message, setMessage] = useState("");
+	const [messageReceived, setMessageRecieved] = useState("");
+
+	useEffect(() => {
+		socket.on("receiveMessage", (data) => {
+			setMessageRecieved(data.message);
+		})
+	}, [socket]);
+	return (
+		<>
+			<input type="text" onChange={e => { setMessage(e.target.value); }} />
+			<button onClick={sendMessage}> Send Message </button>
+			<p>{messageReceived}</p>
+		</>
+	)
 }
