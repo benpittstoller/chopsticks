@@ -5,7 +5,8 @@
   "license": "MIT",
   "private": "true",
   "scripts": {
-    "dev": "concurrently \"yarn workspace server start\" \"yarn workspace client dev\""
+    "build": "yarn workspace client build",
+    "start": "concurrently \"yarn workspace server start\" \"yarn workspace client dev\""
   },
   "workspaces": [
     "server",
