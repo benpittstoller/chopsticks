@@ -6,7 +6,8 @@
   "private": "true",
   "scripts": {
     "build": "yarn workspace client build",
-    "start": "concurrently \"yarn workspace server start\" \"yarn workspace client dev\""
+    "dev": "concurrently \"yarn workspace server start\" \"yarn workspace client dev\"",
+    "start": "concurrently \"yarn workspace server start\" \"yarn workspace client preview\""
   },
   "workspaces": [
     "server",
